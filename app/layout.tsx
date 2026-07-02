@@ -1,7 +1,12 @@
+// Node Modules
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next"
 import localFont from "next/font/local";
+
+// STYLES
 import "./globals.css";
+
+// COMPONENTS
 import { Toaster } from "@/components/ui/sonner";
 
 
@@ -49,6 +54,7 @@ export default function RootLayout({
       <body>
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
