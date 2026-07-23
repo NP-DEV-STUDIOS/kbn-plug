@@ -5,6 +5,8 @@ import { Skeleton } from '../ui/skeleton';
 import { buttonVariants } from '../ui/button';
 import Link from "next/link";
 import { LogIn } from 'lucide-react';
+import { toast } from 'sonner';
+import { toastVariants } from '@/lib/utils';
 
 const UserButton = () => {
     const { data: session, error, isPending } = authClient.useSession()
@@ -17,9 +19,9 @@ const UserButton = () => {
 
     if (error) {
         console.error("Error fetching session:", error);
-        // toast.error("Something went wrong. Please refresh the page.", toastVariants({
-        //     variant: "error",
-        // }));
+        toast.error("Something went wrong. Please refresh the page.", toastVariants({
+            variant: "error",
+        }));
     }
     if (!session) {
         return (

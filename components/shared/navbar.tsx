@@ -10,7 +10,7 @@ import {
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-import Logo from './logo';
+import { Logo } from './logo';
 import UserButton from './user-button';
 import { features, navlist, product, productsLeft, productsRight } from "@/lib/global-navlist"
 import { Badge } from "../ui/badge"
