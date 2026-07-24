@@ -14,6 +14,7 @@ import { Logo } from './logo';
 import UserButton from './user-button';
 import { features, navlist, product, productsLeft, productsRight } from "@/lib/global-navlist"
 import { Badge } from "../ui/badge"
+import Image from "next/image"
 
 
 
@@ -196,7 +197,7 @@ export function Navbar() {
                                 {/* Video/Promo Column */}
                                 <div className="col-span-4 pl-4">
                                     <div className="relative aspect-video rounded-xl">
-                                        <video src={"/demo-video.mp4"} controls muted autoPlay />
+                                        <Image src="/kbn.jpg" alt="kbn" width={400} height={400} />
                                     </div>
                                     <h4 className="font-medium mt-4 text-sm">
                                         Learn more about our features
