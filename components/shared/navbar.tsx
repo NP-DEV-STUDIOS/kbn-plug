@@ -1,24 +1,18 @@
 "use client"
 
-import { useState, useRef, useCallback, ForwardRefExoticComponent, RefAttributes } from "react"
+import { useState, useRef, useCallback } from "react"
 import Link from "next/link"
 import {
     ChevronDown,
-    Play,
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-import { Logo } from './logo';
-import UserButton from './user-button';
+import { Logo, LogoWithLink } from './logo';
 import { features, navlist, product, productsLeft, productsRight } from "@/lib/global-navlist"
-import { Badge } from "../ui/badge"
 import Image from "next/image"
-
-
-
-
+import { Card, CardContent, CardHeader, CardTitle } from "../ui/card"
 
 export function Navbar() {
     const [activeMenu, setActiveMenu] = useState<string | null>(null)
@@ -46,7 +40,7 @@ export function Navbar() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
                         {/* Logo */}
-                        <Logo />
+                        <LogoWithLink />
 
                         {/* Desktop Navigation */}
                         <div className="hidden lg:flex items-center gap-1">
@@ -86,7 +80,8 @@ export function Navbar() {
                         </div>
 
                         {/* Right Side */}
-                        <UserButton />
+                        {/* Place the <UserButton /> component here */}
+                        <p className="text-sm">Guest mode</p>
 
                     </div>
                 </div>
@@ -103,18 +98,16 @@ export function Navbar() {
                             <div className="grid grid-cols-12 gap-8">
                                 {/* Directions Column */}
                                 <div className="col-span-3 border-r pr-8" style={{ borderColor: 'var(--border)' }}>
-                                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: 'var(--muted-foreground)' }}>
+                                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4" >
                                         ABOUT THE PLATFORM
                                     </h3>
                                     <div className="space-y-1">
                                         {product.map(({ id, icon: Icon, title, description }) => (
-                                            <button
+                                            <div
                                                 key={id}
                                                 onMouseEnter={() => setActiveDirection(id)}
                                                 className="w-full text-left p-3 rounded-lg transition-colors"
-                                                style={{
-                                                    backgroundColor: activeDirection === id ? 'var(--muted)' : 'transparent'
-                                                }}
+
                                             >
                                                 <div className="flex items-start gap-3">
                                                     <div
@@ -124,49 +117,59 @@ export function Navbar() {
                                                         <Icon className="w-5 h-5 fill-primary stroke-primary" />
                                                     </div>
                                                     <div>
-                                                        <h4 className="font-medium text-sm" style={{ color: 'var(--foreground)' }}>
+                                                        <h4 className="font-bold text-sm">
                                                             {title}
                                                         </h4>
-                                                        <p className="text-xs mt-0.5 leading-relaxed" style={{ color: 'var(--muted-foreground)' }}>
+                                                        <p className="text-xs mt-0.5 leading-relaxed" >
                                                             {description}
                                                         </p>
                                                     </div>
                                                 </div>
-                                            </button>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
 
-                                <div className="col-span-5 border-r pr-8" style={{ borderColor: 'var(--border)' }}>
+                                <div className="col-span-5 border-r pr-8" >
                                     <h3 className="text-muted-foreground text-xs font-semibold uppercase tracking-wider mb-4">
-                                        TOOLS
+                                        TOOLS & RESOURCES
                                     </h3>
                                     <div className="grid grid-cols-2 gap-x-6">
                                         <div className="space-y-1">
-                                            {productsLeft.map(({ title, icon: Icon, href }) => (
+                                            {productsLeft.map(({ title, description, icon: Icon, href }) => (
                                                 <Link
                                                     key={title}
                                                     href={href}
                                                     className="relative flex items-center gap-3 p-2 rounded-lg transition-colors group"
                                                 >
                                                     <Icon className="w-5 h-5 fill-primary stroke-primary" />
-                                                    <span className="text-sm">
-                                                        {title}
-                                                    </span>
+                                                    <div>
+                                                        <h4 className="font-bold text-sm">
+                                                            {title}
+                                                        </h4>
+                                                        <p className="text-xs mt-0.5 leading-relaxed" >
+                                                            {description}
+                                                        </p>
+                                                    </div>
                                                 </Link>
                                             ))}
                                         </div>
                                         <div className="space-y-1">
-                                            {productsRight.map(({ title, icon: Icon, href }) => (
+                                            {productsRight.map(({ title, description, icon: Icon, href }) => (
                                                 <Link
                                                     key={title}
                                                     href={href}
                                                     className="relative flex items-center gap-3 p-2 rounded-lg transition-colors group"
                                                 >
                                                     <Icon className="w-5 h-5 fill-primary stroke-primary" />
-                                                    <span className="text-sm">
-                                                        {title}
-                                                    </span>
+                                                    <div>
+                                                        <h4 className="font-bold text-sm">
+                                                            {title}
+                                                        </h4>
+                                                        <p className="text-xs mt-0.5 leading-relaxed" >
+                                                            {description}
+                                                        </p>
+                                                    </div>
                                                 </Link>
                                             ))}
                                         </div>
@@ -176,44 +179,36 @@ export function Navbar() {
                                     <div className="mt-6 pt-6" style={{ borderTop: `1px solid var(--border)` }}>
                                         <div className="flex items-center justify-between">
                                             <div>
-                                                <h4 className="font-medium text-sm" style={{ color: 'var(--foreground)' }}>
-                                                    Explore all subjects
+                                                <h4 className="font-medium text-sm" >
+                                                    Ready to get hired?
                                                 </h4>
-                                                <p className="text-xs mt-0.5" style={{ color: 'var(--muted-foreground)' }}>
-                                                    Browse our complete catalog of CAPS/IEB-aligned courses
-                                                </p>
+
                                             </div>
-                                            <Button
-                                                variant="outline"
-                                                className="rounded-full text-sm"
-                                                style={{ borderColor: 'var(--border)', color: 'var(--foreground)' }}
-                                            >
-                                                Browse all
-                                            </Button>
+                                            <Link href={"/tools/cv-maker"} className="block md:inline-block text-center bg-black text-white px-6 py-4 rounded-xl">Create my CV</Link>
+
                                         </div>
                                     </div>
                                 </div>
 
-                                {/* Video/Promo Column */}
-                                <div className="col-span-4 pl-4">
-                                    <div className="relative aspect-video rounded-xl">
-                                        <Image src="/kbn.jpg" alt="kbn" width={400} height={400} />
-                                    </div>
-                                    <h4 className="font-medium mt-4 text-sm">
-                                        Learn more about our features
-                                    </h4>
-                                    <div className="mt-3 space-y-2">
+                                {/* Picture Column */}
+                                <Card className="col-span-4 bg-primary">
+                                    <CardHeader>
+                                        <CardTitle className="text-white text-xl">
+                                            Learn more about our features
+                                        </CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="mt-3 space-y-2">
                                         {features.map((feature, index) => (
                                             <div
                                                 key={index}
-                                                className="flex items-center gap-2 text-xs"
+                                                className="flex items-center gap-2 text-white"
                                             >
-                                                <feature.icon className="w-4 h-4" />
+                                                <div className="w-2 h-2 bg-white rounded-full" />
                                                 <span>{feature.text}</span>
                                             </div>
                                         ))}
-                                    </div>
-                                </div>
+                                    </CardContent>
+                                </Card>
                             </div>
                         </div>
                     </div>

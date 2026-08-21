@@ -38,3 +38,7 @@ export const formatDate = (dateString: string) => {
   return date.toLocaleDateString("en-US", { year: "numeric", month: "short" })
 }
 
+export const formatURLPortion = (value: string) => {
+  return value.replace(" ", "-")
+}
+

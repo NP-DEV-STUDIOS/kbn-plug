@@ -8,8 +8,8 @@ const Hero = () => {
         <section className="container mx-auto max-w-5xl px-4 md:flex items-center gap-6 lg:gap-10">
             <div className="py-12 md:py-12 flex-1">
                 <div className="bg-green-200/50 p-2 rounded-full mb-4 block md:inline-block w-fit mx-auto space-x-2">
-                    <Badge className="bg-green-300 p-2 text-xs md:text-sm">IT'S FREE!</Badge>
-                    <span className="text-xs md:text-sm">Build a professional CV in minutes</span>
+                    <Badge className="bg-green-300 p-2 text-xs md:text-sm">Developer</Badge>
+                    <span className="text-xs md:text-sm">Built and maintained by <Link className="text-blue-500 font-bold underline" href={"https://perfectnkosi.vercel.app"}>Perfect Nkosi</Link></span>
                 </div>
                 <h1 className="text-3xl md:text-4xl font-bold leading-[1.6] mb-4 text-center md:text-left">
                     Land your dream job with our AI-powered CV builder.
@@ -19,7 +19,7 @@ const Hero = () => {
                 </p>
 
                 <div className={"flex flex-col md:flex-row gap-4"}>
-                    <Link href={"/cv-maker"} className="block md:inline-block text-center bg-primary text-white px-6 py-4 rounded-xl">Create my CV</Link>
+                    <Link href={"/tools/cv-maker"} className="block md:inline-block text-center bg-black text-white px-6 py-4 rounded-xl">Create my CV</Link>
                     <Link href={"/jobs"} className={"block md:inline-block text-center bg-slate-300 text-slate-600 px-6 py-4 rounded-xl"}>Looking for a job?</Link>
                 </div>
             </div>

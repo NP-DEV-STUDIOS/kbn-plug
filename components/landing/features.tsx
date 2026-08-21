@@ -1,131 +1,48 @@
-"use client"
-import {useEffect, useState, useRef} from "react";
-import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
-import {Button} from "@/components/ui/button";
-import {FaCheck} from "react-icons/fa6";
+import { Cog, DownloadCloud, Laptop, LucideIcon } from 'lucide-react';
+import React from 'react'
 
-type Feature = {
-    title: string;
-    subFeatures: string[]
-    color: string;
-}
+type Props = {}
 
-const features: Feature[] = [
+const features: { icon: LucideIcon; title: string; content: string }[] = [
     {
-        title: "Professional Guidelines",
-        subFeatures: [
-            "content tips",
-            "Formating Suggestions",
-            "Industry Specific Guidelines"
-        ],
-        color:  "rgba(139,92,246,0.3)"
+        icon: Cog,
+        title: "Intutive form",
+        content: "An intuitive, user-friendly form, works offline and save your data automatically"
     },
     {
-        title: "Analysis",
-        subFeatures: [
-            "ATS compatibility check",
-            "Readability recommendations",
-            "Keyword analysis"
-        ],
-        color:  "rgba(245,158,11,0.3)"
+        icon: Laptop,
+        title: "Live Preview",
+        content: "See the changes live as you build your CV. on mobile, tap the eye icon, see your CV"
     },
     {
-        title: "Job Matching",
-        subFeatures: [
-            "Job Analyser",
-            "Save favourite Jobs",
-            "Improvements (Based on current markets)"
-        ],
-        color: "rgba(6,182,212,0.3)"
-    },
-    {
-        title: "Professional Templates",
-        subFeatures: [
-            "Modern",
-            "Classic",
-            "And more premium templates",
-        ],
-        color: "rgba(99,102,241,0.3)"
-    },
-    {
-        title: "AI Cover Letter Generator",
-        subFeatures: [
-            "AI Generator",
-            "Pre-made Cover Letter Templates",
-            "Writing tips"
-        ],
-        color: "rgba(132,204,22,0.3)"
+        icon: DownloadCloud,
+        title: "Download PDF CV",
+        content: "Save your CV to your phone or Desktop, or choose to send on WhatsApp"
     }
 ]
 
 const Features = () => {
-    const [currentCard, setCurrentCard] = useState<Feature>(features[0]);
-    const NEXT_FEATURE_DELAY = 5000
-    const index = useRef(0)
-
-    // Automatically showing next feature after a delay of 5 seconds
-    useEffect(() => {
-        setInterval(() => {
-           if (index.current <= features.length - 1) {
-               setCurrentCard(features[index.current]);
-               index.current++
-           } else {
-               index.current = 0
-               setCurrentCard(features[index.current]);
-           }
-        }, NEXT_FEATURE_DELAY)
-
-    }, [])
-
     return (
-        <section className={"bg-white"}>
-            <div className={"section-container space-y-4 p-8 grid md:grid-cols-2"}>
-                <div className={"text-center md:text-left"}>
-                    <h2 className={"text-3xl sm:text-4xl font-bold text-slate-800 mb-4 text-balance leading-snug"}>
-                        It&apos;s not just<br/><span className={"text-primary"}>&quot;another CV Maker&quot;</span>😎 <br />
-                        There&apos;s more!
-                    </h2>
-                    <div className={"space-y-4 space-x-4"}>
-                        {features.map((feature, index) => (
-                            <Button key={index} style={{backgroundColor: currentCard.title === feature.title ? `${feature.color}`: "#fff"}} onClick={() => {
-                                setCurrentCard(() => {
-                                    return features.find(item => item.title === feature.title)!
-                                });
-                            }} >
-                                <FaCheck />
-                                {feature.title}</Button>
-                        ))}
-                    </div>
-                </div>
-                <div className={""}>
-                    <FeatureCard title={currentCard.title} subFeatures={currentCard.subFeatures} color={currentCard.color}/>
+        <section className='section-container'>
+            <div className='flex items-center gap-4 mb-8'>
+                <h2 className='flex-1 w-full'>Why it works?</h2>
+                <div className='relative w-full'>
+                    <div className='h-4 w-4 bg-primary/80' />
+                    <div className='h-[1.5px] w-full bg-zinc-400 absolute top-1/2 -translate-y-1/2 left-4' />
                 </div>
             </div>
-        </section>
-    );
-};
 
-type CardProps = {
-    title: string;
-    subFeatures: string[],
-    color: string;
-}
-
-const FeatureCard = ({title, subFeatures, color}: CardProps) => {
-    return (
-        <Card className={`bg-[${color}] ring-0`} style={{backgroundColor: `${color}`}}>
-            <CardHeader>
-                <CardTitle className={"font-bold"}>{title}</CardTitle>
-            </CardHeader>
-            <CardContent className={"flex gap-4 flex-wrap"}>
-                {subFeatures.map((feature, index) => (
-                    <div key={index} className={""}>
-                        <span className={"px-4 py-1 rounded-xl"} style={{ backgroundColor: `${color}`}}>{feature}</span>
+            <div className='grid md:grid-cols-3 gap-8'>
+                {features.map(({ icon: Icon, title, content }, index) => (
+                    <div key={index} className='bg-white shadow-md shadow-slate-300 p-4 text-center rounded-md'>
+                        <Icon className='stroke-primary mx-auto mb-3' size={30} />
+                        <h3 className='mb-2 tracking-tight'>{title}</h3>
+                        <p className='text-[14px] text-slate-700 font-medium'>{content}</p>
                     </div>
                 ))}
-            </CardContent>
-        </Card>
+            </div>
+        </section>
     )
 }
 
-export default Features;
+export default Features

@@ -8,6 +8,8 @@ import "./globals.css";
 
 // COMPONENTS
 import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Navbar } from "@/components/shared/navbar";
 
 
 const figtreeSans = localFont({
@@ -50,9 +52,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${figtreeSans.className} font-poppins`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${figtreeSans.className} font-poppins`}>
       <body>
-        {children}
+        <Navbar />
+        <TooltipProvider>{children}</TooltipProvider>
         <Toaster />
         <Analytics />
       </body>

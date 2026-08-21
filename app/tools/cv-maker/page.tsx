@@ -25,12 +25,12 @@ import { useNavigation } from "./hooks/use-navigation"
 
 // UI Components
 import Sidebar from "@/app/tools/cv-maker/_components/ui/sidebar"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Navbar } from "@/components/shared/navbar";
 import { cn } from "@/lib/utils"
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Eye } from "lucide-react"
-import {BiReset} from "react-icons/bi";
+import { BiReset } from "react-icons/bi";
 
 /**
  * Main content component that uses the resume context
@@ -204,10 +204,9 @@ function ResumeBuilderContent() {
         <div className="flex flex-col h-[88dvh] bg-linear-to-br from-slate-50 to-blue-50 lg:gap-0">
             {/* Navigation Sidebar - Desktop */}
             <div className="flex items-center h-[8vh] justify-between sticky top-[10vh] z-10">
-                <Sidebar setActiveTab={changeTab} activeTab={activeTab} />
-                <div className="">
+                <div className="flex items-center gap-2">
                     <Button size={"sm"} variant={"outline"} onClick={resetResumeData}>
-                        <BiReset /> <span className={"text-sm"}>Reset</span>
+                        <BiReset /> <span>Reset</span>
                     </Button>
                     <MobilePreview />
                 </div>
@@ -225,7 +224,11 @@ const MobilePreview = () => {
     const { resumeData, selectedTemplate } = useResume()
     return (
         <Sheet>
-            <SheetTrigger className="lg:hidden bg-slate-500 text-white p-2 rounded-xl cursor-pointer hover:bg-slate-600"><Eye size={20} /></SheetTrigger>
+            <SheetTrigger className={buttonVariants({
+                variant: "outline",
+                size: "sm",
+                className: "md:hidden"
+            })}>Preview</SheetTrigger>
             <SheetContent className="data-[side=right]:w-screen">
                 <SheetTitle>Preview</SheetTitle>
                 <div className="max-w-4xl mx-auto w-full relative bg-linear-to-br from-gray-50 to-white lg:flex flex-col overflow-hidden flex-1 overflow-y-auto p-4 lg:p-6">
@@ -243,7 +246,6 @@ const MobilePreview = () => {
 export default function ResumeBuilder() {
     return (
         <ResumeProvider>
-            <Navbar />
             <ResumeBuilderContent />
         </ResumeProvider>
     )

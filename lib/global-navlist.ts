@@ -16,6 +16,7 @@ import { BiLogoFacebook, BiLogoInstagram, BiLogoTiktok } from "react-icons/bi";
 
 type ProductProps = {
     title: string
+    description: string
     icon: ForwardRefExoticComponent<Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>> | IconType
     href: string
 }
@@ -40,32 +41,32 @@ const product = [
     {
         id: "vision",
         title: "Vision",
-        description: "To provide a true, free and accessible career platform to everyone.",
+        description: "A South Africa where every young person can get hired, regardless of data or background.",
         icon: Trophy,
     },
     {
         id: "mission",
         title: "Mission",
-        description: "To provide a true, free and accessible career platform to everyone.",
+        description: "To provide a free, offline-first career platform built by SA youth, for SA Youth",
         icon: Car,
     },
     {
         id: "about",
         title: "The Developer",
-        description: "Developed and actively maintained by Perfect Nkosi (Kabokweni, 1245).",
+        description: "Developed by Perfect Nkosi from Kabokweni (1245). Actively maintained",
         icon: UserRound,
     },
 ]
 
 const productsLeft: ProductProps[] = [
-    { title: "CV Maker", icon: LaptopMinimal, href: "/tools/cv-maker" },
+    { title: "CV Maker", description: "Create and download ATS CVs", icon: LaptopMinimal, href: "/tools/cv-maker" },
     // { title: "AI Interview Assistant", icon: Sparkles, href: "#" },
-    { title: "Jobs", icon: BriefcaseBusiness, href: "/jobs", },
+    { title: "Jobs", description: "Browse real opportunities across Mzansi", icon: BriefcaseBusiness, href: "/tools/job-board", },
 
 ]
 
 const productsRight: ProductProps[] = [
-    { title: "Study Notes", icon: BookOpen, href: "/study-notes" },
+    // { title: "Study Notes", icon: BookOpen, href: "/resources/study-notes" },
 ]
 
 const features = [

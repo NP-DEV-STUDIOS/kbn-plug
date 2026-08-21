@@ -17,7 +17,7 @@ type LogoProps = {
 
 const Logo = ({ iconClassName, kbnClassName, plugClassName }: LogoProps) => {
     return (
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col">
             <p className={cn("flex items-center text-2xl", logoFont.className)}>
                 <span className={cn("text-primary", kbnClassName)}>KBN</span>
                 <Plug className={iconClassName} />

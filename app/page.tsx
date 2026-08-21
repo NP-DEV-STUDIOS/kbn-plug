@@ -1,11 +1,13 @@
+import Features from "@/components/landing/features";
 import Hero from "@/components/landing/hero";
-import { Navbar } from "@/components/shared/navbar";
+import Why from "@/components/landing/Why";
 
 export default function Home() {
   return (
-    <main>
-      <Navbar />
+    <main className="space-y-24">
       <Hero />
+      <Features />
+      <Why />
     </main>
   );
 }
